@@ -111,7 +111,7 @@ class MyApp extends StatelessWidget {
               children: [
                 Material(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(.0),
+                  borderRadius: BorderRadius.circular(24.0),
                       child: Card(
                        child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
