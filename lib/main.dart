@@ -8,17 +8,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     
       home: Scaffold(
-      appBar:AppBar(
-        title: Text('Search Jobs'),
-        centerTitle: true,
-        elevation: 0.0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {},
-        ),
-      ),
+        backgroundColor: Colors.blue[300],
         body: HomePage(),
       ),
     );
@@ -28,337 +19,289 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          //start header to card
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Container(
-              child: Column(
-                children: [
-                  Material(
-                    elevation: 20.0,
-                    shadowColor: Colors.blue,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: "Search Job",
-                        border: OutlineInputBorder(),
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.search),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Material(
-                    elevation: 20.0,
-                    shadowColor: Colors.blue,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: "Search Job",
-                        border: OutlineInputBorder(),
-                        suffixIcon: IconButton(
-                          icon: Icon(Icons.search),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //var size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
-                        Text(
-                          'Recent Jobs',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20.0),
+                        Icon(
+                          Icons.save,
+                          color: Colors.black,
+                          size: 30.0,
+                          semanticLabel: 'search jobs',
                         ),
+                        SizedBox(width: 15),
+                        Text(
+                          'Job App',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 30),
+                    Text(
+                      'Sign In',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
+                      child: Container(
+                        height: 2,
+                        width: double.maxFinite,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    Text(
+                      'Email id:',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: "johndoe",
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                        fillColor: Colors.white,
+                        filled: true,
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    Text(
+                      'Password:',
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: "*********",
+                        hintStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                        fillColor: Colors.white,
+                        filled: true,
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        FlatButton(
+                          textColor: Colors.white,
+                          onPressed: () {
+                            /*...*/
+                          },
+                          child: Text(
+                            "forgot password?",
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Center(
+                      child: OutlineButton(
+                        padding: EdgeInsets.fromLTRB(130, 15, 130, 15),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        borderSide: BorderSide(color: Colors.white),
+                        onPressed: () {},
+                        child: Text(
+                          'Sign In',
+                          style: TextStyle(
+                            fontSize: 30.0,
+                            color: Colors.blue[600],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Center(
+                      child: Text(
+                        '-- OR --',
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                ),
+              ),
+            ),
+
+            //bottom google sign start
+            Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  //1st column
+                  Column(
+                    children: [
+                      Text(
+                        'Sign In With',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.blue[600],
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.save,
+                            color: Colors.black,
+                            size: 30.0,
+                            semanticLabel: 'search jobs',
+                          ),
+                          Icon(
+                            Icons.save,
+                            color: Colors.black,
+                            size: 30.0,
+                            semanticLabel: 'search jobs',
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  //end 1st column
+                  SizedBox(height: 30),
+                  //2nd column
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: Column(
+                      children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Icons.arrow_downward,
-                              color: Colors.black,
-                              size: 40.0,
-                              semanticLabel: 'search Location',
+                            Text(
+                              'Don\'t have an account?',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.blue[600],
+                              ),
                             ),
-                            Column(
-                              children: [
-                                Text(
-                                  'A',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16.0),
-                                ),
-                                Text(
-                                  'Z',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16.0),
-                                ),
-                              ],
+                            FlatButton(
+                              textColor: Colors.white,
+                              onPressed: () {
+                                /*...*/
+                              },
+                              child: Text(
+                                "Register",
+                                style: TextStyle(fontSize: 20.0),
+                              ),
                             ),
                           ],
                         ),
                       ],
                     ),
                   ),
-
-
-                //start card
-                  Material(
-                    child: SizedBox(
-                      height: size.height / 6,
-                      child: Card(
-                        clipBehavior:Clip.antiAlias,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Row(
-                          children: [
-                              Expanded(
-                                  flex: 2,                            
-                                   child: AspectRatio(
-                                  aspectRatio: 3 / 4,
-                                   child: Image(image: AssetImage('assets/one.jpg'),
-                                    fit: BoxFit.fitHeight,
-                                  ),
-                                ),
-                              ),
-                            SizedBox(width: 15),
-                         
-                            Expanded(
-                              flex: 4,
-                              child:  Padding(
-                   padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                     child: Container(       
-                              child: Column( 
-                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                 children: [
-                                Padding(
-                                padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                  child: Text(
-                            'Atlassian, New York',
-                            style: TextStyle(fontSize: 16.0),
-                            ),
-                                ), 
-                              Padding(
-                               padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                child: Text(
-                            'Sr. Database Managaer',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-                            ),
-                              ), 
-                              Padding(
-                              padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                child: Text(
-                            '50 to 60 year',
-                            style: TextStyle(fontSize: 16.0),
-                            ),
-                              ), 
-                            ],
-                            ),
-                           ),
-                   ),
-                            ),
-
-                            Expanded(
-                              flex: 1,
-                              child:   Container(
-                      child: Column( 
-                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                             Icon(
-                              Icons.save,
-                              color: Colors.black,
-                              size: 30.0,
-                              semanticLabel: 'search jobs',
-                            ),
-                           Text(
-                          '3 days ago',
-                          style: TextStyle(fontSize: 12.0),
-                          ), 
-                            ],
-                           ),
-                    ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                //end card
-
-                
-                //start card
-                  Material(
-                    child: SizedBox(
-                      height: size.height / 6,
-                      child: Card(
-                        clipBehavior:Clip.antiAlias,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Row(
-                          children: [
-                              Expanded(
-                                  flex: 2,                            
-                                   child: AspectRatio(
-                                  aspectRatio: 3 / 4,
-                                   child: Image(image: AssetImage('assets/one.jpg'),
-                                    fit: BoxFit.fitHeight,
-                                  ),
-                                ),
-                              ),
-                            SizedBox(width: 15),
-                         
-                            Expanded(
-                              flex: 4,
-                              child:  Padding(
-                   padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                     child: Container(       
-                              child: Column( 
-                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                 children: [
-                                Padding(
-                                padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                  child: Text(
-                            'Atlassian, New York',
-                            style: TextStyle(fontSize: 16.0),
-                            ),
-                                ), 
-                              Padding(
-                               padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                child: Text(
-                            'Sr. Database Managaer',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-                            ),
-                              ), 
-                              Padding(
-                              padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                child: Text(
-                            '50 to 60 year',
-                            style: TextStyle(fontSize: 16.0),
-                            ),
-                              ), 
-                            ],
-                            ),
-                           ),
-                   ),
-                            ),
-
-                            Expanded(
-                              flex: 1,
-                              child:   Container(
-                      child: Column( 
-                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                             Icon(
-                              Icons.save,
-                              color: Colors.black,
-                              size: 30.0,
-                              semanticLabel: 'search jobs',
-                            ),
-                           Text(
-                          '3 days ago',
-                          style: TextStyle(fontSize: 12.0),
-                          ), 
-                            ],
-                           ),
-                    ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                //end card
-
+                  //end 2nd column
                 ],
               ),
             ),
-          ),
-          //end header to card
-
-          //below buttons
-          Container(
-            
-            child: 
-            Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                  Padding(
-                     padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
-                    child: Row(
-                       mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        FloatingActionButton(
-                          onPressed: (){},
-                          child: Icon(Icons.vertical_align_top),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                    SizedBox(height: 10),
-                    
-                   Container(
-                     child:Row(children: [
-                Expanded(
-                  child: FlatButton(
-                  color: Colors.blue[100],
-                 // padding: EdgeInsets.fromLTRB(45, 15, 45, 15),
-                  textColor: Colors.blue,
-                  splashColor: Colors.blueAccent,
-                  onPressed: () {
-                    /*...*/
-                  },
-                  child: Text(
-                  "Search",
-                  style: TextStyle(fontSize: 20.0),
-              ),
-            ),
-                ),
-
-                                Expanded(
-                  child: FlatButton(
-                  //color: Colors.blue[100],
-                 // padding: EdgeInsets.fromLTRB(45, 15, 45, 15),
-                  textColor: Colors.blue,
-                  splashColor: Colors.white,
-                  onPressed: () {
-                    /*...*/
-                  },
-                  child: Text(
-                  "My Jobs",
-                  style: TextStyle(fontSize: 20.0),
-              ),
-            ),
-                ),
-
-                
-
-
-
-                    
-                    
-                     ],
-                     ),
-                   ),
-              ],
-            ),
-          ),
-        ],
+            //bottom google sign end
+          ],
+        ),
       ),
     );
   }
 }
+
+//  Container(
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 Column(
+//                   children: [
+//                     Center(
+//                       child: Text(
+//                         'Sign In With',
+//                         style: TextStyle(
+//                           fontSize: 20.0,
+//                           color: Colors.blue[600],
+//                         ),
+//                       ),
+//                     ),
+//                     Container(
+//                       width: double.infinity,
+//                       child: Center(
+//                         child: Row(
+//                           children: [
+//                             Icon(
+//                               Icons.save,
+//                               color: Colors.black,
+//                               size: 30.0,
+//                               semanticLabel: 'search jobs',
+//                             ),
+//                             Icon(
+//                               Icons.save,
+//                               color: Colors.black,
+//                               size: 30.0,
+//                               semanticLabel: 'search jobs',
+//                             ),
+//                           ],
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//                 Center(
+//                   child: Row(
+//                     children: [
+//                       Text(
+//                         'Don\'t have an account?',
+//                         style: TextStyle(
+//                           fontSize: 20.0,
+//                           color: Colors.blue[600],
+//                         ),
+//                       ),
+//                       FlatButton(
+//                         textColor: Colors.white,
+//                         onPressed: () {
+//                           /*...*/
+//                         },
+//                         child: Text(
+//                           "Register",
+//                           style: TextStyle(fontSize: 20.0),
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//           //bottom google sign end
+//         ],
+//       ),
+//     ),
