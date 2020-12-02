@@ -177,17 +177,22 @@ class HomePage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.save,
-                            color: Colors.black,
-                            size: 30.0,
-                            semanticLabel: 'search jobs',
+                          FlatButton(
+                            onPressed: () {},
+                            child: CircleAvatar(
+                              // radius: 20.0,
+                              backgroundImage: AssetImage('assets/google.png'),
+                              backgroundColor: Colors.transparent,
+                            ),
                           ),
-                          Icon(
-                            Icons.save,
-                            color: Colors.black,
-                            size: 30.0,
-                            semanticLabel: 'search jobs',
+                          FlatButton(
+                            onPressed: () {},
+                            child: CircleAvatar(
+                              //radius: 20.0,
+                              backgroundImage:
+                                  AssetImage('assets/linkedin.jpg'),
+                              backgroundColor: Colors.transparent,
+                            ),
                           ),
                         ],
                       ),
