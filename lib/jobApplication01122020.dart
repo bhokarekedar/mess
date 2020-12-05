@@ -8,17 +8,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     
       home: Scaffold(
-      appBar:AppBar(
-        title: Text('Search Jobs'),
-        centerTitle: true,
-        elevation: 0.0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {},
+        appBar: AppBar(
+          title: Text('Search Jobs'),
+          centerTitle: true,
+          elevation: 0.0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () {},
+          ),
         ),
-      ),
         body: HomePage(),
       ),
     );
@@ -110,178 +109,189 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
 
-
-                //start card
+                  //start card
                   Material(
                     child: SizedBox(
                       height: size.height / 6,
                       child: Card(
-                        clipBehavior:Clip.antiAlias,
+                        clipBehavior: Clip.antiAlias,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: Row(
                           children: [
-                              Expanded(
-                                  flex: 2,                            
-                                   child: AspectRatio(
-                                  aspectRatio: 3 / 4,
-                                   child: Image(image: AssetImage('assets/one.jpg'),
-                                    fit: BoxFit.fitHeight,
+                            Expanded(
+                              flex: 2,
+                              child: AspectRatio(
+                                aspectRatio: 3 / 4,
+                                child: Image(
+                                  image: AssetImage('assets/one.jpg'),
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 15),
+                            Expanded(
+                              flex: 4,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
+                                child: Container(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                        child: Text(
+                                          'Atlassian, New York',
+                                          style: TextStyle(fontSize: 16.0),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                        child: Text(
+                                          'Sr. Database Managaer',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16.0),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                        child: Text(
+                                          '50 to 60 year',
+                                          style: TextStyle(fontSize: 16.0),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                            SizedBox(width: 15),
-                         
-                            Expanded(
-                              flex: 4,
-                              child:  Padding(
-                   padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                     child: Container(       
-                              child: Column( 
-                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                 children: [
-                                Padding(
-                                padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                  child: Text(
-                            'Atlassian, New York',
-                            style: TextStyle(fontSize: 16.0),
                             ),
-                                ), 
-                              Padding(
-                               padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                child: Text(
-                            'Sr. Database Managaer',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-                            ),
-                              ), 
-                              Padding(
-                              padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                child: Text(
-                            '50 to 60 year',
-                            style: TextStyle(fontSize: 16.0),
-                            ),
-                              ), 
-                            ],
-                            ),
-                           ),
-                   ),
-                            ),
-
                             Expanded(
                               flex: 1,
-                              child:   Container(
-                      child: Column( 
-                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                             Icon(
-                              Icons.save,
-                              color: Colors.black,
-                              size: 30.0,
-                              semanticLabel: 'search jobs',
-                            ),
-                           Text(
-                          '3 days ago',
-                          style: TextStyle(fontSize: 12.0),
-                          ), 
-                            ],
-                           ),
-                    ),
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(
+                                      Icons.save,
+                                      color: Colors.black,
+                                      size: 30.0,
+                                      semanticLabel: 'search jobs',
+                                    ),
+                                    Text(
+                                      '3 days ago',
+                                      style: TextStyle(fontSize: 12.0),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
                   ),
-                //end card
+                  //end card
 
-                
-                //start card
+                  //start card
                   Material(
                     child: SizedBox(
                       height: size.height / 6,
                       child: Card(
-                        clipBehavior:Clip.antiAlias,
+                        clipBehavior: Clip.antiAlias,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: Row(
                           children: [
-                              Expanded(
-                                  flex: 2,                            
-                                   child: AspectRatio(
-                                  aspectRatio: 3 / 4,
-                                   child: Image(image: AssetImage('assets/one.jpg'),
-                                    fit: BoxFit.fitHeight,
+                            Expanded(
+                              flex: 2,
+                              child: AspectRatio(
+                                aspectRatio: 3 / 4,
+                                child: Image(
+                                  image: AssetImage('assets/one.jpg'),
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 15),
+                            Expanded(
+                              flex: 4,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
+                                child: Container(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                        child: Text(
+                                          'Atlassian, New York',
+                                          style: TextStyle(fontSize: 16.0),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                        child: Text(
+                                          'Sr. Database Managaer',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16.0),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.fromLTRB(0, 4, 0, 4),
+                                        child: Text(
+                                          '50 to 60 year',
+                                          style: TextStyle(fontSize: 16.0),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
-                            SizedBox(width: 15),
-                         
-                            Expanded(
-                              flex: 4,
-                              child:  Padding(
-                   padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                     child: Container(       
-                              child: Column( 
-                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                 children: [
-                                Padding(
-                                padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                  child: Text(
-                            'Atlassian, New York',
-                            style: TextStyle(fontSize: 16.0),
                             ),
-                                ), 
-                              Padding(
-                               padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                child: Text(
-                            'Sr. Database Managaer',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-                            ),
-                              ), 
-                              Padding(
-                              padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
-                                child: Text(
-                            '50 to 60 year',
-                            style: TextStyle(fontSize: 16.0),
-                            ),
-                              ), 
-                            ],
-                            ),
-                           ),
-                   ),
-                            ),
-
                             Expanded(
                               flex: 1,
-                              child:   Container(
-                      child: Column( 
-                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                             Icon(
-                              Icons.save,
-                              color: Colors.black,
-                              size: 30.0,
-                              semanticLabel: 'search jobs',
-                            ),
-                           Text(
-                          '3 days ago',
-                          style: TextStyle(fontSize: 12.0),
-                          ), 
-                            ],
-                           ),
-                    ),
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Icon(
+                                      Icons.save,
+                                      color: Colors.black,
+                                      size: 30.0,
+                                      semanticLabel: 'search jobs',
+                                    ),
+                                    Text(
+                                      '3 days ago',
+                                      style: TextStyle(fontSize: 12.0),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
                   ),
-                //end card
-
+                  //end card
                 ],
               ),
             ),
@@ -290,70 +300,59 @@ class HomePage extends StatelessWidget {
 
           //below buttons
           Container(
-            
-            child: 
-            Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                  Padding(
-                     padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
-                    child: Row(
-                       mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        FloatingActionButton(
-                          onPressed: (){},
-                          child: Icon(Icons.vertical_align_top),
-                        ),
-                      ],
-                    ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      FloatingActionButton(
+                        onPressed: () {},
+                        child: Icon(Icons.vertical_align_top),
+                      ),
+                    ],
                   ),
-
-                    SizedBox(height: 10),
-                    
-                   Container(
-                     child:Row(children: [
-                Expanded(
-                  child: FlatButton(
-                  color: Colors.blue[100],
-                 // padding: EdgeInsets.fromLTRB(45, 15, 45, 15),
-                  textColor: Colors.blue,
-                  splashColor: Colors.blueAccent,
-                  onPressed: () {
-                    /*...*/
-                  },
-                  child: Text(
-                  "Search",
-                  style: TextStyle(fontSize: 20.0),
-              ),
-            ),
                 ),
-
-                                Expanded(
-                  child: FlatButton(
-                  //color: Colors.blue[100],
-                 // padding: EdgeInsets.fromLTRB(45, 15, 45, 15),
-                  textColor: Colors.blue,
-                  splashColor: Colors.white,
-                  onPressed: () {
-                    /*...*/
-                  },
-                  child: Text(
-                  "My Jobs",
-                  style: TextStyle(fontSize: 20.0),
-              ),
-            ),
-        ),
-
-                
-
-
-
-                    
-                    
-                     ],
-                     ),
-                   ),
+                SizedBox(height: 10),
+                Container(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: FlatButton(
+                          color: Colors.blue[100],
+                          // padding: EdgeInsets.fromLTRB(45, 15, 45, 15),
+                          textColor: Colors.blue,
+                          splashColor: Colors.blueAccent,
+                          onPressed: () {
+                            /*...*/
+                          },
+                          child: Text(
+                            "Search",
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: FlatButton(
+                          //color: Colors.blue[100],
+                          // padding: EdgeInsets.fromLTRB(45, 15, 45, 15),
+                          textColor: Colors.blue,
+                          splashColor: Colors.white,
+                          onPressed: () {
+                            /*...*/
+                          },
+                          child: Text(
+                            "My Jobs",
+                            style: TextStyle(fontSize: 20.0),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
