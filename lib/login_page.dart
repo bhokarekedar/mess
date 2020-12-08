@@ -17,14 +17,6 @@ Future<String> attemptLogIn(String email, String password) async {
 }
 
 class LoginPage extends StatefulWidget {
-  // void displayDialog(context, title, text) => showDialog(
-  //       context: context,
-  //       builder: (context) => AlterDialog(
-  //         title: Text(title),
-  //         content: Text(text),
-  //       ),
-  //     );
-
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -37,36 +29,34 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  signIn(String email, String password) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    Map body = {"email": email, "password": password};
-    var jsonResponse;
-    var res = await http.post(url, body: body);
-    if (res.statusCode == 200) {
-      jsonResponse = json.decode(res.body);
-      print("${res.body}");
-      if (jsonResponse != null) {
-        setState(() {
-          _isLoading = false;
-        });
-        sharedPreferences.setString("toke", jsonResponse['token']);
-        // Navigator.of(context).pushAndRemoveUntil(
-        //        MaterialPageRoute(builder: (BuildContext context) => HomePage()),
-        //     (Router<dynamic> route) => false);
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage()),
-        );
-      }
-    } else {
-      setState(() {
-        _isLoading = false;
-      });
-      print("${res.body}");
-    }
-  }
+  // signIn(String email, String password) async {
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   Map body = {"email": email, "password": password};
+  //   var jsonResponse;
+  //   var res = await http.post(url, body: body);
+  //   if (res.statusCode == 200) {
+  //     jsonResponse = json.decode(res.body);
+  //     print("${res.body}");
+  //     if (jsonResponse != null) {
+  //       setState(() {
+  //         _isLoading = false;
+  //       });
+  //       sharedPreferences.setString("toke", jsonResponse['token']);
+  //       // Navigator.of(context).pushAndRemoveUntil(
+  //       //        MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+  //       //     (Router<dynamic> route) => false);
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(builder: (context) => HomePage()),
+  //       );
+  //     }
+  //   } else {
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //     print("${res.body}");
+  //   }
+  // }
 
   Widget _buildEmail() {
     return TextFormField(
@@ -92,9 +82,6 @@ class _LoginPageState extends State<LoginPage> {
 
         return null;
       },
-      onSaved: (String value) {
-        email = value;
-      },
     );
   }
 
@@ -115,11 +102,7 @@ class _LoginPageState extends State<LoginPage> {
         if (value.isEmpty) {
           return 'Password is Required';
         }
-
         return null;
-      },
-      onSaved: (String value) {
-        password = value;
       },
     );
   }
@@ -165,7 +148,6 @@ class _LoginPageState extends State<LoginPage> {
                   child: _isLoading
                       ? Center(child: CircularProgressIndicator())
                       : Form(
-                          key: _formKey,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -248,28 +230,25 @@ class _LoginPageState extends State<LoginPage> {
                                           BorderRadius.circular(10.0)),
                                   borderSide: BorderSide(color: Colors.white),
                                   onPressed: () async {
-                                    if (!_formKey.currentState.validate()) {
-                                      return;
-                                    }
                                     var email = _emailController.text;
                                     var password = _passwordController.text;
 
-                                    //  var jwt = await attemptLogIn(email, password);
-                                    // print('bbbb');
-                                    // print(jwt);
-                                    // //Navigator.of(context).pushNamed('/home');
-                                    // if (jwt != null) {
-                                    //   await storage.write(
-                                    //       key: "jwt", value: jwt);
-                                    //   Navigator.push(
-                                    //       context,
-                                    //       MaterialPageRoute(
-                                    //           builder: (context) =>
-                                    //               HomePage.fromBase64(jwt)));
-
-                                    await signIn(email, password);
-
-                                    _formKey.currentState.save();
+                                    var jwt =
+                                        await attemptLogIn(email, password);
+                                    print('bbbb');
+                                    print(jwt);
+                                    //Navigator.of(context).pushNamed('/home');
+                                    if (jwt != null) {
+                                      // var vari = await storage.write(
+                                      //     key: "jwt", value: jwt);
+                                      Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                HomePage()),
+                                        ModalRoute.withName('/'),
+                                      );
+                                    } else {}
                                   },
                                   child: Text(
                                     'Sign In',
