@@ -145,130 +145,135 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Container(
-                  child: Form(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            FloatingActionButton(
-                              mini: true,
-                              onPressed: () {},
-                              child: Icon(Icons.vertical_align_top),
-                            ),
-                            SizedBox(width: 15),
-                            Text(
-                              'Job App',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.white,
+                  child: _isLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : Form(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  FloatingActionButton(
+                                    mini: true,
+                                    onPressed: () {},
+                                    child: Icon(Icons.vertical_align_top),
+                                  ),
+                                  SizedBox(width: 15),
+                                  Text(
+                                    'Job App',
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 30),
-                        Text(
-                          'Sign In',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 15),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
-                          child: Container(
-                            height: 2,
-                            width: double.maxFinite,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(height: 15),
-                        Text(
-                          'Email id:',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        _buildEmail(),
-                        SizedBox(height: 15),
-                        Text(
-                          'Passsword:',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.white,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        _buildPassword(),
-                        SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            FlatButton(
-                              textColor: Colors.white,
-                              onPressed: () {},
-                              child: Text(
-                                "forgot pasword?",
-                                style: TextStyle(fontSize: 20.0),
+                              SizedBox(height: 30),
+                              Text(
+                                'Sign In',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 20),
-                        Center(
-                          child: OutlineButton(
-                            padding: EdgeInsets.fromLTRB(130, 15, 130, 15),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0)),
-                            borderSide: BorderSide(color: Colors.white),
-                            onPressed: () async {
-                              var email = _emailController.text;
-                              var password = _passwordController.text;
+                              SizedBox(height: 15),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
+                                child: Container(
+                                  height: 2,
+                                  width: double.maxFinite,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(height: 15),
+                              Text(
+                                'Email id:',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              _buildEmail(),
+                              SizedBox(height: 15),
+                              Text(
+                                'Passsword:',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              _buildPassword(),
+                              SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  FlatButton(
+                                    textColor: Colors.white,
+                                    onPressed: () {},
+                                    child: Text(
+                                      "forgot pasword?",
+                                      style: TextStyle(fontSize: 20.0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 20),
+                              Center(
+                                child: OutlineButton(
+                                  padding:
+                                      EdgeInsets.fromLTRB(130, 15, 130, 15),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  borderSide: BorderSide(color: Colors.white),
+                                  onPressed: () async {
+                                    var email = _emailController.text;
+                                    var password = _passwordController.text;
 
-                              var jwt = await attemptLogIn(email, password);
-                              print('bbbb');
-                              print(jwt);
-                              //Navigator.of(context).pushNamed('/home');
-                              if (jwt != null) {
-                                // var vari = await storage.write(
-                                //     key: "jwt", value: jwt);
-                                Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          HomePage()),
-                                  ModalRoute.withName('/'),
-                                );
-                              } else {}
-                            },
-                            child: Text(
-                              'Sign In',
-                              style: TextStyle(
-                                fontSize: 22.0,
-                                color: Colors.blue[600],
+                                    var jwt =
+                                        await attemptLogIn(email, password);
+                                    print('bbbb');
+                                    print(jwt);
+                                    //Navigator.of(context).pushNamed('/home');
+                                    if (jwt != null) {
+                                      // var vari = await storage.write(
+                                      //     key: "jwt", value: jwt);
+                                      Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                HomePage()),
+                                        ModalRoute.withName('/'),
+                                      );
+                                    } else {}
+                                  },
+                                  child: Text(
+                                    'Sign In',
+                                    style: TextStyle(
+                                      fontSize: 22.0,
+                                      color: Colors.blue[600],
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
+                              SizedBox(height: 10),
+                              Center(
+                                child: Text(
+                                  '-- OR --',
+                                  style: TextStyle(
+                                    fontSize: 25.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                            ],
                           ),
                         ),
-                        SizedBox(height: 10),
-                        Center(
-                          child: Text(
-                            '-- OR --',
-                            style: TextStyle(
-                              fontSize: 25.0,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                      ],
-                    ),
-                  ),
                 ),
               ),
 

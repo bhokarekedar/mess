@@ -1,6 +1,5 @@
 import 'dart:convert' show json;
 import 'package:flutter/material.dart';
-import 'package:flutter_app/main.dart';
 import 'package:flutter_app/screens/home/main.dart';
 import 'package:flutter_app/shared/loading.dart';
 import 'package:http/http.dart' as http;
@@ -11,8 +10,6 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
-const SERVER_IP = 'https://projecta-bugdroid-v01.herokuapp.com/api/login/';
-
 class _LoginState extends State<Login> {
   String email;
   String password;
@@ -21,13 +18,6 @@ class _LoginState extends State<Login> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
-  Future<String> attemptLogIn(String email, String password) async {
-    var res = await http
-        .post("$SERVER_IP", body: {"email": email, "password": password});
-    if (res.statusCode == 200) return res.body;
-    return null;
-  }
 
   signIn(String email, String password) async {
     setState(() {
@@ -39,20 +29,17 @@ class _LoginState extends State<Login> {
     var response = await http.post(
         "https://projecta-bugdroid-v01.herokuapp.com/api/login/",
         body: data);
-    print("response.body");
-    print(response.body);
+
     if (response.statusCode == 200) {
       jsonResponse = await json.decode(response.body);
-      print("jsonResponse");
-      print('Howdy, ${jsonResponse['access_token']}!');
+
+      //print('Howdy, ${jsonResponse['access_token']}!');
       if (jsonResponse != null) {
         setState(() {
           _isLoading = false;
         });
-        final dataa = await sharedPreferences.setString(
+        await sharedPreferences.setString(
             "token", jsonResponse['access_token']);
-        print("sharedPreferences.getString");
-        print(sharedPreferences.getString("token"));
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (BuildContext context) => MainPage()),
             (Route<dynamic> route) => false);
@@ -61,7 +48,7 @@ class _LoginState extends State<Login> {
       setState(() {
         _isLoading = false;
       });
-      print(response.body);
+      await displayDialog();
     }
   }
 
@@ -95,83 +82,260 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return _isLoading
         ? Loading()
-        : Form(
-            key: _formKey,
+        : SafeArea(
             child: Scaffold(
-              body: SafeArea(
-                child: Column(
+              backgroundColor: Colors.blue[300],
+              body: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextFormField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        hintText: "johndoe",
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
+                    Container(
+                        child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            FloatingActionButton(
+                              mini: true,
+                              onPressed: () {},
+                              child: Icon(Icons.vertical_align_top),
+                            ),
+                            SizedBox(width: 15),
+                            Text(
+                              'Job App',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
-                        fillColor: Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (String value) {
-                        if (value.isEmpty) {
-                          return 'Email is Required';
-                        }
-                        if (!RegExp(
-                                r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-                            .hasMatch(value)) {
-                          return 'Please enter a valid email Address';
-                        }
-                        return null;
-                      },
-                      onSaved: (String value) {
-                        email = value;
-                      },
-                    ),
-                    TextFormField(
-                      controller: _passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: "********",
-                        hintStyle: TextStyle(
-                          color: Colors.grey,
+                        SizedBox(height: 30),
+                        Text(
+                          'Sign In',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        fillColor: Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(),
-                      ),
-                      validator: (String value) {
-                        if (value.isEmpty) {
-                          return 'Password is Required';
-                        }
-                        return null;
-                      },
-                      onSaved: (String value) {
-                        password = value;
-                      },
-                    ),
-                    OutlineButton(
-                      padding: EdgeInsets.fromLTRB(130, 15, 130, 15),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      borderSide: BorderSide(color: Colors.white),
-                      onPressed: () async {
-                        if (!_formKey.currentState.validate()) {
-                          return;
-                        }
-                        _formKey.currentState.save();
-                        await signIn(
-                            _emailController.text, _passwordController.text);
-                      },
-                      child: Text(
-                        'Sign In',
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          color: Colors.blue[600],
+                        SizedBox(height: 15),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 30, 0),
+                          child: Container(
+                            height: 2,
+                            width: double.maxFinite,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ),
+                        SizedBox(height: 15),
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Email id:',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              TextFormField(
+                                controller: _emailController,
+                                decoration: InputDecoration(
+                                  hintText: "johndoe",
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (String value) {
+                                  if (value.isEmpty) {
+                                    return 'Email is Required';
+                                  }
+                                  if (!RegExp(
+                                          r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                                      .hasMatch(value)) {
+                                    return 'Please enter a valid email Address';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (String value) {
+                                  email = value;
+                                },
+                              ),
+                              SizedBox(height: 15),
+                              Text(
+                                'Passsword:',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(height: 15),
+                              TextFormField(
+                                controller: _passwordController,
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  hintText: "********",
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                  ),
+                                  fillColor: Colors.white,
+                                  filled: true,
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (String value) {
+                                  if (value.isEmpty) {
+                                    return 'Password is Required';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (String value) {
+                                  password = value;
+                                },
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  FlatButton(
+                                    textColor: Colors.white,
+                                    onPressed: () {},
+                                    child: Text(
+                                      "forgot pasword?",
+                                      style: TextStyle(fontSize: 20.0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 20),
+                              Center(
+                                child: OutlineButton(
+                                  padding:
+                                      EdgeInsets.fromLTRB(130, 15, 130, 15),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(10.0)),
+                                  borderSide: BorderSide(color: Colors.white),
+                                  onPressed: () async {
+                                    if (!_formKey.currentState.validate()) {
+                                      return;
+                                    }
+                                    _formKey.currentState.save();
+                                    await signIn(_emailController.text,
+                                        _passwordController.text);
+                                  },
+                                  child: Text(
+                                    'Sign In',
+                                    style: TextStyle(
+                                      fontSize: 22.0,
+                                      color: Colors.blue[600],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Center(
+                                child: Text(
+                                  '-- OR --',
+                                  style: TextStyle(
+                                    fontSize: 22.0,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                      ],
+                    )),
+
+                    //bottom area
+                    Container(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                            child: Column(
+                          children: [
+                            Text(
+                              'Sign In With',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.blue[600],
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FloatingActionButton(
+                                  heroTag: "btn1",
+                                  mini: true,
+                                  onPressed: () {},
+                                  child: Image.asset(
+                                    'assets/google.png',
+                                    width: 40.0,
+                                    height: 40.0,
+                                  ),
+                                ),
+                                FloatingActionButton(
+                                  heroTag: "btn2",
+                                  mini: true,
+                                  onPressed: () {},
+                                  child: Image.asset(
+                                    'assets/linkenid.png',
+                                    width: 40.0,
+                                    height: 40.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )),
+                        SizedBox(height: 30),
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Don\'t have an account?',
+                                    style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.blue[600],
+                                    ),
+                                  ),
+                                  FlatButton(
+                                    textColor: Colors.white,
+                                    onPressed: () {
+                                      /*...*/
+                                    },
+                                    child: Text(
+                                      "Register",
+                                      style: TextStyle(fontSize: 20.0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )),
                   ],
-                ),
+                )),
               ),
             ),
           );
