@@ -9,6 +9,6 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     //return authenticate or not
     //return MainPage();
-    return NewChat();
+    return Login();
   }
 }
