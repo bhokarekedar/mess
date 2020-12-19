@@ -21,7 +21,7 @@ class _ChatState extends State<Chat> {
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Container(
-                child: Text('ffff'),
+                child: Text('ffddff'),
               ),
             ),
             Container(
