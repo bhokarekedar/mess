@@ -1,0 +1,4 @@
+#Fri Dec 11 09:57:44 NPT 2020
+base.0=C\:\\projects 2020\\flutter projects\\flutter_app\\build\\app\\intermediates\\transforms\\r8\\release\\0\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
